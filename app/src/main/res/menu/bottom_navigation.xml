@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home_button_ok"
+        android:title="home"/>
+    <item
+        android:id="@+id/nav_mount"
+        android:icon="@drawable/mount_button"
+        android:title="mounth"/>
+    <item
+        android:id="@+id/nav_beach"
+        android:icon="@drawable/beach_button"
+        android:title="beach"/>
+    <item
+        android:id="@+id/nav_hotel"
+        android:icon="@drawable/hotel_button"
+        android:title="hotel"/>
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/profile_button"
+        android:title="profile"/>
+</menu>
