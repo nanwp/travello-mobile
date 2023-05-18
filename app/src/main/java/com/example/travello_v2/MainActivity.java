@@ -6,7 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.travello_v2.Api.Destination;
+
+import com.example.travello_v2.Api.DestinationData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,16 +18,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        try {
-//            TimeUnit.SECONDS.sleep(2);
-//
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
-//        startActivity(intent);
-//        finish();
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -34,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },500);
+        },3000);
 
     }
 
