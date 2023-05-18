@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.MounthFragment"
+    android:background="@color/menu_collor">
+
+    <androidx.appcompat.widget.AppCompatButton
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="35dp"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:background="@drawable/back" />
+
+    <TextView
+        android:id="@+id/title_beach"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="32dp"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mountain"/>
+
+    <EditText
+        android:id="@+id/search"
+        app:layout_constraintTop_toBottomOf="@+id/title_beach"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/search_button"
+        android:paddingLeft="26dp"
+        android:layout_width="268dp"
+        android:layout_height="42dp"
+        android:background="@drawable/custom_button"
+        android:hint=" Search here .."
+        android:textColor="@color/black"
+        android:inputType="text"
+        android:textSize="16sp"
+        android:elevation="4dp"
+        android:translationZ="6dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/search_button"
+        app:layout_constraintTop_toBottomOf="@+id/title_beach"
+        app:layout_constraintStart_toEndOf="@id/search"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="30dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:background="@drawable/search"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="10dp"/>
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_marginTop="200dp"
+        android:background="#f5f5f5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scrollIndicators="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/error_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="italic"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center"
+                android:id="@+id/recyc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/list_destination"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

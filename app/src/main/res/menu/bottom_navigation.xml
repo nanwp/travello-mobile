@@ -15,7 +15,7 @@
         android:title="beach"/>
     <item
         android:id="@+id/nav_hotel"
-        android:icon="@drawable/hotel_button"
+        android:icon="@drawable/hotel_button_1"
         android:title="hotel"/>
     <item
         android:id="@+id/nav_profile"
