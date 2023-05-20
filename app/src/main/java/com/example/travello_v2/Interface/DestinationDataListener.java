@@ -1,4 +1,4 @@
-package com.example.travello_v2;
+package com.example.travello_v2.Interface;
 
 import com.example.travello_v2.Models.DestinationModels;
 

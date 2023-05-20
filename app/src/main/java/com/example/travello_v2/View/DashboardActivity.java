@@ -1,4 +1,4 @@
-package com.example.travello_v2;
+package com.example.travello_v2.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,8 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.travello_v2.Fragment.HomeFragment;
-import com.example.travello_v2.Fragment.MounthFragment;
+import com.example.travello_v2.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -33,7 +32,7 @@ public class DashboardActivity extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.nav_beach:
-//                        selectedFragment = new BeachFragment();
+                        selectedFragment = new BeachFragment();
                         break;
                     case R.id.nav_mount:
                         selectedFragment = new MounthFragment();
@@ -42,7 +41,7 @@ public class DashboardActivity extends AppCompatActivity {
                         selectedFragment = new HomeFragment();
                         break;
                     case R.id.nav_hotel:
-//                        selectedFragment = new HotelFragment();
+                        selectedFragment = new HotelFragment();
                         break;
                     case R.id.nav_profile:
 //                        selectedFragment = new ProfileFragment();

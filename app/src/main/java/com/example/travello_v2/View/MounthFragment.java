@@ -1,29 +1,26 @@
-package com.example.travello_v2.Fragment;
+package com.example.travello_v2.View;
 
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.travello_v2.Adapter.RecycleViewDestination;
 import com.example.travello_v2.Api.DestinationData;
-import com.example.travello_v2.DestinationDataListener;
+import com.example.travello_v2.Interface.DestinationDataListener;
 import com.example.travello_v2.Models.DestinationModels;
 import com.example.travello_v2.R;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +34,7 @@ public class MounthFragment extends Fragment implements DestinationDataListener 
     RecyclerView.LayoutManager recycleViewLayoutManager;
     ArrayList<DestinationModels> data;
     EditText search;
-    TextView errorText;
+    TextView itemCount;
 
 
 
@@ -91,6 +88,8 @@ public class MounthFragment extends Fragment implements DestinationDataListener 
         DestinationData destinationData = new DestinationData("","mountain", this);
         destinationData.execute();
 
+        itemCount = view.findViewById(R.id.count);
+
 
         search = view.findViewById(R.id.search);
         AppCompatButton btnSearch = view.findViewById(R.id.search_button);
@@ -106,6 +105,7 @@ public class MounthFragment extends Fragment implements DestinationDataListener 
                         recyclerView.setLayoutManager(recycleViewLayoutManager);
                         recyclerView.setAdapter(recyclerViewAdapter);
                         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                        itemCount.setText("item count : "+recyclerViewAdapter.getItemCount());
                     }
                 });
                 destinationData.execute();
@@ -117,13 +117,11 @@ public class MounthFragment extends Fragment implements DestinationDataListener 
 
     @Override
     public void onDestinationDataReceived(ArrayList<DestinationModels> destinationModels, int statusCode, String message) {
-        if (statusCode == 200){
-            recycleViewLayoutManager = new LinearLayoutManager(getContext());
-            recyclerViewAdapter = new RecycleViewDestination(getContext(), destinationModels);
-            recyclerView.setLayoutManager(recycleViewLayoutManager);
-            recyclerView.setAdapter(recyclerViewAdapter);
-        }else{
-            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-        }
+        recycleViewLayoutManager = new LinearLayoutManager(getContext());
+        recyclerViewAdapter = new RecycleViewDestination(getContext(), destinationModels);
+        recyclerView.setLayoutManager(recycleViewLayoutManager);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        itemCount.setText("item count : "+recyclerViewAdapter.getItemCount());
     }
 }

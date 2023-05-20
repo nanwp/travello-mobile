@@ -1,4 +1,4 @@
-package com.example.travello_v2;
+package com.example.travello_v2.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 
-import com.example.travello_v2.Api.DestinationData;
-
-import java.util.concurrent.TimeUnit;
+import com.example.travello_v2.R;
 
 public class MainActivity extends AppCompatActivity {
 
