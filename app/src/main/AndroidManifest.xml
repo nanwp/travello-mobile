@@ -16,13 +16,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".DetailsDestination"
+            android:name=".View.DetailsDestination"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".View.DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

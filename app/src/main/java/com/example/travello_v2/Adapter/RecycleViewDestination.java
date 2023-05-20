@@ -9,12 +9,11 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.travello_v2.DetailsDestination;
+import com.example.travello_v2.View.DetailsDestination;
 import com.example.travello_v2.Models.DestinationModels;
 import com.example.travello_v2.R;
 import com.squareup.picasso.Picasso;

@@ -1,4 +1,4 @@
-package com.example.travello_v2.Fragment;
+package com.example.travello_v2.View;
 
 import android.os.Bundle;
 

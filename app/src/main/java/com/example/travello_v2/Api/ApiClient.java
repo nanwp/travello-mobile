@@ -10,13 +10,13 @@ import okhttp3.Response;
 
 public class ApiClient {
 
-    private static final String API_BASE_URL = "http://103.171.182.206:8070/";
+    private static final String API_BASE_URL = "https://travello.pegelinux.tech/api/";
     private static  final OkHttpClient httpClient = new OkHttpClient();
 
     public static String getDestinations(String search, String category) throws IOException {
 
         Request request = new Request.Builder()
-                .url(API_BASE_URL + "destination?search="+search+"&category="+category)
+                .url(API_BASE_URL + "destinations?search="+search+"&category="+category)
                 .get()
                 .build();
         Response response = httpClient.newCall(request).execute();
