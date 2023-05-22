@@ -1,76 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".View.BeachFragment"
-    android:background="@color/menu_collor">
-    <TextView
-        android:id="@+id/title_beach"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    android:background="@color/secondaryCollor"
+    tools:context=".View.DestinationsActivity">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/search"
+        android:background="@drawable/back"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="32dp"
-        android:textSize="22sp"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Beach"/>
+        android:id="@+id/back"/>
 
     <EditText
         android:id="@+id/search"
-        app:layout_constraintTop_toBottomOf="@+id/title_beach"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/back"
         app:layout_constraintEnd_toStartOf="@id/search_button"
-        android:paddingLeft="26dp"
+        android:paddingLeft="20dp"
         android:layout_width="268dp"
         android:layout_height="42dp"
         android:background="@drawable/custom_button"
-        android:hint=" Search here .."
+        android:hint="search"
         android:textColor="@color/black"
         android:inputType="text"
-        android:textSize="16sp"
+        android:textSize="15sp"
         android:elevation="4dp"
         android:translationZ="6dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="30dp"/>
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/search_button"
-        app:layout_constraintTop_toBottomOf="@+id/title_beach"
+        android:id="@id/search_button"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/search"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="30dp"
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:background="@drawable/search"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="10dp"/>
+
+    <Spinner
+        android:id="@+id/filter"
+        app:layout_constraintTop_toBottomOf="@id/search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="250dp"
+        android:spinnerMode="dropdown"
+        android:background="@drawable/spinner_bg"
+        android:popupBackground="@color/white"
+        android:stateListAnimator="@drawable/spinner_sla"
+        android:popupElevation="3dp"
+        android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+        android:layout_height="28dip"
+        style="@style/Widget.AppCompat.Spinner"
+        android:layout_marginTop="10dp"/>
 
 
     <LinearLayout
-        android:layout_marginTop="200dp"
         android:background="#f5f5f5"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="115dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
-            android:layout_marginLeft="45dp"
-            android:layout_marginTop="10dp"
-            android:text="0 beaches found"
             android:id="@+id/count"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:text="0 destinations found"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:textColor="@color/black"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="2dp"
             android:layout_gravity="center"
             android:id="@+id/recyc"
             android:layout_width="wrap_content"

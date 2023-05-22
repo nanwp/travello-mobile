@@ -15,17 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.travello_v2.Adapter.RecycleViewDestination;
-import com.example.travello_v2.Api.ApiClient;
-import com.example.travello_v2.Api.DestinationData;
-import com.example.travello_v2.Interface.DestinationDataListener;
+import com.example.travello_v2.Api.DestinationsData;
+import com.example.travello_v2.Interface.DestinationsDataListener;
 import com.example.travello_v2.Models.DestinationModels;
 import com.example.travello_v2.R;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -34,7 +28,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  *
  */
-public class HotelFragment extends Fragment implements DestinationDataListener{
+public class HotelFragment extends Fragment implements DestinationsDataListener {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter recyclerViewAdapter;
@@ -83,7 +77,7 @@ public class HotelFragment extends Fragment implements DestinationDataListener{
         recyclerView = view.findViewById(R.id.recyc);
         recyclerView.setHasFixedSize(true);
 
-        DestinationData destinationData = new DestinationData("","hotel", this);
+        DestinationsData destinationData = new DestinationsData("","hotel", this);
         destinationData.execute();
 
         itemCount = view.findViewById(R.id.count);
@@ -95,15 +89,17 @@ public class HotelFragment extends Fragment implements DestinationDataListener{
             @Override
             public void onClick(View v) {
                 String valSearch = search.getText().toString();
-                DestinationData destinationData = new DestinationData(valSearch, "hotel", new DestinationDataListener() {
+                DestinationsData destinationData = new DestinationsData(valSearch, "hotel", new DestinationsDataListener() {
                     @Override
                     public void onDestinationDataReceived(ArrayList<DestinationModels> destinationModels, int statusCode, String message) {
                         recycleViewLayoutManager = new LinearLayoutManager(getContext());
                         recyclerViewAdapter = new RecycleViewDestination(getContext(), destinationModels);
                         recyclerView.setLayoutManager(recycleViewLayoutManager);
                         recyclerView.setAdapter(recyclerViewAdapter);
-                        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                        itemCount.setText("item count : "+recyclerViewAdapter.getItemCount());
+                        itemCount.setText(recyclerViewAdapter.getItemCount()+" hotels found");
+                        if (statusCode != 200){
+                            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 destinationData.execute();
@@ -115,11 +111,15 @@ public class HotelFragment extends Fragment implements DestinationDataListener{
 
     @Override
     public void onDestinationDataReceived(ArrayList<DestinationModels> destinationModels, int statusCode, String message) {
-        recycleViewLayoutManager = new LinearLayoutManager(getContext());
-        recyclerViewAdapter = new RecycleViewDestination(getContext(), destinationModels);
-        recyclerView.setLayoutManager(recycleViewLayoutManager);
-        recyclerView.setAdapter(recyclerViewAdapter);
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-        itemCount.setText("item count : "+recyclerViewAdapter.getItemCount());
+        if (getContext() != null) {
+            recycleViewLayoutManager = new LinearLayoutManager(getContext());
+            recyclerViewAdapter = new RecycleViewDestination(getContext(), destinationModels);
+            recyclerView.setLayoutManager(recycleViewLayoutManager);
+            recyclerView.setAdapter(recyclerViewAdapter);
+            itemCount.setText(recyclerViewAdapter.getItemCount()+" hotels found");
+            if (statusCode != 200){
+                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

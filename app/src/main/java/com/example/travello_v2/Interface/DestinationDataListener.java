@@ -1,9 +1,8 @@
 package com.example.travello_v2.Interface;
 
-import com.example.travello_v2.Models.DestinationModels;
-
-import java.util.ArrayList;
+import com.example.travello_v2.Models.DestinationModel;
 
 public interface DestinationDataListener {
-    void onDestinationDataReceived(ArrayList<DestinationModels> destinationModels, int statusCode, String message);
+    void onDestinationDataReceived(DestinationModel data, int statusCode, String message);
+
 }

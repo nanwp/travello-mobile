@@ -2,39 +2,62 @@ package com.example.travello_v2.Models;
 
 import org.json.JSONArray;
 
-public class DestinationModels {
+import java.util.ArrayList;
+import java.util.List;
+
+public class DestinationModel {
     private String id;
     private String name;
     private String description;
     private String location;
     private String category;
-    private JSONArray image;
+    private List<String> urlImage;
     private float rating;
     private int totalUlasan;
-    private String createdAt;
-    private String updatedAt;
+    private ArrayList<UlasanModels> ulasan;
 
-    public DestinationModels(){}
-    public DestinationModels(String id, String name, String description, String location, String category, JSONArray image, float rating, int totalUlasan, String createdAt, String updatedAt) {
+    public DestinationModel(String id, String name, String description, String location, String category, List<String> urlImage, float rating, int totalUlasan, ArrayList<UlasanModels> ulasan) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.location = location;
         this.category = category;
-        this.image = image;
+        this.urlImage = urlImage;
         this.rating = rating;
         this.totalUlasan = totalUlasan;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-    public float getRating(){return this.rating;}
-    public void setRating(float rating){this.rating = rating;}
-    public JSONArray getImage() {
-        return image;
+        this.ulasan = ulasan;
     }
 
-    public void setImage(JSONArray image) {
-        this.image = image;
+    public ArrayList<UlasanModels> getUlasan() {
+        return ulasan;
+    }
+
+    public void setUlasan(ArrayList<UlasanModels> ulasan) {
+        this.ulasan = ulasan;
+    }
+
+    public int getTotalUlasan() {
+        return totalUlasan;
+    }
+
+    public void setTotalUlasan(int totalUlasan) {
+        this.totalUlasan = totalUlasan;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public List<String> getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(List<String> urlImage) {
+        this.urlImage = urlImage;
     }
 
     public String getCategory() {
@@ -75,29 +98,5 @@ public class DestinationModels {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public int getTotalUlasan() {
-        return totalUlasan;
-    }
-
-    public void setTotalUlasan(int totalUlasan) {
-        this.totalUlasan = totalUlasan;
     }
 }

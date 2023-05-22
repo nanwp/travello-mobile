@@ -18,6 +18,9 @@ import com.example.travello_v2.Models.DestinationModels;
 import com.example.travello_v2.R;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 public class RecycleViewDestination extends RecyclerView.Adapter<RecycleViewDestination.ViewHolder>{
@@ -30,6 +33,7 @@ public class RecycleViewDestination extends RecyclerView.Adapter<RecycleViewDest
         TextView textLocation;
         ImageView imageIcon;
         RatingBar ratingBar;
+        TextView totalUlasan;
 
         RelativeLayout parretLayout;
 
@@ -42,6 +46,7 @@ public class RecycleViewDestination extends RecyclerView.Adapter<RecycleViewDest
             imageIcon = itemView.findViewById(R.id.image_destinasi);
             parretLayout = itemView.findViewById(R.id.paretDestination);
             ratingBar = itemView.findViewById(R.id.rating_list);
+            totalUlasan = itemView.findViewById(R.id.total_ulasan);
         }
     }
 
@@ -66,22 +71,27 @@ public class RecycleViewDestination extends RecyclerView.Adapter<RecycleViewDest
         TextView textLocation = holder.textLocation;
         ImageView imageIcon = holder.imageIcon;
         RatingBar ratingBar = holder.ratingBar;
+        TextView totalUlasan = holder.totalUlasan;
 
         ratingBar.setRating(dataDestination.get(position).getRating());
         textName.setText(dataDestination.get(position).getName());
         textLocation.setText(dataDestination.get(position).getLocation());
+        totalUlasan.setText(dataDestination.get(position).getTotalUlasan() + " Reviews");
 
-        String imageUrl = dataDestination.get(position).getImage();
+        JSONArray imageArray = dataDestination.get(position).getImage();
+
+        String imageUrl = null;
+        try {
+            imageUrl = (String) imageArray.get(0);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         Picasso.get().load(imageUrl).resize(320, 180 ).placeholder(R.mipmap.ic_launcher).into(imageIcon);
 
         holder.parretLayout.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailsDestination.class);
-            intent.putExtra("title", dataDestination.get(position).getName());
-            intent.putExtra("location", dataDestination.get(position).getLocation());
-            intent.putExtra("description", dataDestination.get(position).getDescription());
-            intent.putExtra("image", dataDestination.get(position).getImage());
             intent.putExtra("id", dataDestination.get(position).getId());
-            intent.putExtra("rating", dataDestination.get(position).getRating());
 
 
             context.startActivity(intent);

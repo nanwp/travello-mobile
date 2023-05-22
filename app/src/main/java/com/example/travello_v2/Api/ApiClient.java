@@ -26,4 +26,18 @@ public class ApiClient {
 
         return responseData;
     }
+
+    public static String getDestination(String id) throws IOException {
+
+        Request request = new Request.Builder()
+                .url(API_BASE_URL + "destination/"+id)
+                .get()
+                .build();
+        Response response = httpClient.newCall(request).execute();
+        System.out.println(request.url());
+        String responseData = response.body().string();
+        response.close();
+
+        return responseData;
+    }
 }

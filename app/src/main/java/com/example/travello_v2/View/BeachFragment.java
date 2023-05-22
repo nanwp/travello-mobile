@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.travello_v2.Adapter.RecycleViewDestination;
-import com.example.travello_v2.Api.DestinationData;
-import com.example.travello_v2.Interface.DestinationDataListener;
+import com.example.travello_v2.Api.DestinationsData;
+import com.example.travello_v2.Interface.DestinationsDataListener;
 import com.example.travello_v2.Models.DestinationModels;
 import com.example.travello_v2.R;
 
@@ -27,12 +27,11 @@ import java.util.ArrayList;
  * Use the {@link BeachFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BeachFragment extends Fragment implements DestinationDataListener{
+public class BeachFragment extends Fragment implements DestinationsDataListener {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter recyclerViewAdapter;
     RecyclerView.LayoutManager recycleViewLayoutManager;
-    ArrayList<DestinationModels> data;
     EditText search;
     TextView itemCount;
 
@@ -76,7 +75,7 @@ public class BeachFragment extends Fragment implements DestinationDataListener{
         recyclerView = view.findViewById(R.id.recyc);
         recyclerView.setHasFixedSize(true);
 
-        DestinationData destinationData = new DestinationData("","beach", this);
+        DestinationsData destinationData = new DestinationsData("","beach", this);
         destinationData.execute();
 
         itemCount = view.findViewById(R.id.count);
@@ -88,15 +87,17 @@ public class BeachFragment extends Fragment implements DestinationDataListener{
             @Override
             public void onClick(View v) {
                 String valSearch = search.getText().toString();
-                DestinationData destinationData = new DestinationData(valSearch, "beach", new DestinationDataListener() {
+                DestinationsData destinationData = new DestinationsData(valSearch, "beach", new DestinationsDataListener() {
                     @Override
                     public void onDestinationDataReceived(ArrayList<DestinationModels> destinationModels, int statusCode, String message) {
                         recycleViewLayoutManager = new LinearLayoutManager(getContext());
                         recyclerViewAdapter = new RecycleViewDestination(getContext(), destinationModels);
                         recyclerView.setLayoutManager(recycleViewLayoutManager);
                         recyclerView.setAdapter(recyclerViewAdapter);
-                        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-                        itemCount.setText("item count : "+recyclerViewAdapter.getItemCount());
+                        itemCount.setText(recyclerViewAdapter.getItemCount()+" beaches found");
+                        if (statusCode != 200){
+                            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 destinationData.execute();
@@ -108,11 +109,15 @@ public class BeachFragment extends Fragment implements DestinationDataListener{
 
     @Override
     public void onDestinationDataReceived(ArrayList<DestinationModels> destinationModels, int statusCode, String message) {
-        recycleViewLayoutManager = new LinearLayoutManager(getContext());
-        recyclerViewAdapter = new RecycleViewDestination(getContext(), destinationModels);
-        recyclerView.setLayoutManager(recycleViewLayoutManager);
-        recyclerView.setAdapter(recyclerViewAdapter);
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-        itemCount.setText("item count : "+recyclerViewAdapter.getItemCount());
+        if (getContext() != null) {
+            recycleViewLayoutManager = new LinearLayoutManager(getContext());
+            recyclerViewAdapter = new RecycleViewDestination(getContext(), destinationModels);
+            recyclerView.setLayoutManager(recycleViewLayoutManager);
+            recyclerView.setAdapter(recyclerViewAdapter);
+            itemCount.setText(recyclerViewAdapter.getItemCount()+" beaches found");
+            if (statusCode != 200){
+                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
