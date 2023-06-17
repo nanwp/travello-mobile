@@ -9,7 +9,9 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
-        mavenCentral()
+//        mavenCentral()
+//        maven { url "http://dl.bintray.com/populov/maven" }
+        jcenter()
     }
 }
 rootProject.name = "Travello_v2"

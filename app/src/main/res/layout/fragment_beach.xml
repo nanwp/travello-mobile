@@ -48,45 +48,37 @@
         android:background="@drawable/search"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="10dp"/>
-    <TextView
-        app:layout_constraintTop_toBottomOf="@id/search"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center"
-        android:text="item count : "
-        android:id="@+id/count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black"/>
 
-    <ScrollView
-        android:scrollbars="none"
+
+    <LinearLayout
         android:layout_marginTop="200dp"
         android:background="#f5f5f5"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:scrollIndicators="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="10dp"
+            android:text="0 beaches found"
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
+            android:textSize="13sp"
+            android:textColor="@color/black"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="2dp"
-                android:layout_gravity="center"
-                android:id="@+id/recyc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:listitem="@layout/list_destination"
-                />
-        </LinearLayout>
-    </ScrollView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="2dp"
+            android:layout_gravity="center"
+            android:id="@+id/recyc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/list_destination"
+            />
+
+    </LinearLayout>
 
 
 

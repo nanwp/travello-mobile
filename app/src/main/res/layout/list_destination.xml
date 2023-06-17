@@ -4,44 +4,65 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="5dp"
-    android:layout_marginBottom="20dp"
-    android:background="@drawable/custom_button"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/image_destinasi"
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="320dp"
-        android:layout_height="180dp"/>
-    <TextView
-        android:id="@+id/judul_destinasi"
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Destination"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="185dp"
-        android:elevation="2dp"/>
-    <TextView
-        android:id="@+id/lokasi_destionasi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Location"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="205dp"
-        android:elevation="2dp"/>
-    <RatingBar
-        android:id="@+id/rating_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:progressTint="#FFCC01"
-        style="?android:attr/ratingBarStyleSmall"
-        android:rating="3"
-        android:layout_marginTop="225dp"
-        android:layout_marginLeft="14dp"/>
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        android:elevation="3dp"
+        app:cardUseCompatPadding="true">
+
+        <ImageView
+            android:id="@+id/image_destinasi"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="320dp"
+            android:layout_height="180dp"/>
+        <TextView
+            android:id="@+id/judul_destinasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Destination"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="185dp"
+            android:elevation="2dp"/>
+        <TextView
+            android:id="@+id/lokasi_destionasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="205dp"
+            android:elevation="2dp"/>
+        <RatingBar
+            android:id="@+id/rating_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:progressTint="#FFCC01"
+            style="?android:attr/ratingBarStyleSmall"
+            android:rating="3"
+            android:layout_marginTop="225dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="14dp"/>
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/total_ulasan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 Reviews"
+            android:textSize="12sp"
+            android:layout_marginLeft="105dp"
+            android:layout_marginTop="225dp"
+            android:elevation="2dp"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
 </RelativeLayout>
