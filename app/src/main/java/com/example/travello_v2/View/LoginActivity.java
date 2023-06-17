@@ -104,12 +104,14 @@ public class LoginActivity extends AppCompatActivity{
         etMessage.setText(message);
 
         if (success){
+            final boolean[] buttonClicked = {false};
             etTitle.setTextColor(ContextCompat.getColor(this, R.color.success));
             imageView.setImageResource(R.drawable.truee);
             etButton.setBackgroundColor(ContextCompat.getColor(this, R.color.success));
             etButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    buttonClicked[0] = true;
                     Intent intent = new Intent(context, DashboardActivity.class);
                     startActivity(intent);
                     dialog.dismiss();
@@ -127,10 +129,13 @@ public class LoginActivity extends AppCompatActivity{
 
                 @Override
                 public void onFinish() {
-                    Intent intent = new Intent(context, DashboardActivity.class);
-                    startActivity(intent);
-                    dialog.dismiss();
-                    finish();
+                    if(!buttonClicked[0]){
+                        Intent intent = new Intent(context, DashboardActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        dialog.dismiss();
+                    }
                 }
             }.start();
         } else  {

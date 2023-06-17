@@ -150,15 +150,7 @@ public class DetailsDestination extends AppCompatActivity implements Destination
 
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        } else if (dialogStatus != null && dialogStatus.isShowing()) {
-            dialogStatus.dismiss();
-        }
-    }
+
 
     private void statusDialog(String title, String message, boolean success){
         dialogStatus = new Dialog(this);
@@ -182,9 +174,12 @@ public class DetailsDestination extends AppCompatActivity implements Destination
             etTitle.setTextColor(ContextCompat.getColor(this, R.color.success));
             imageView.setImageResource(R.drawable.truee);
             etButton.setBackgroundColor(ContextCompat.getColor(this, R.color.success));
+            final boolean[] buttonClicked = {false};
+
             etButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    buttonClicked[0] = true;
                     Intent intent = new Intent(getApplicationContext(), DetailsDestination.class);
                     intent.putExtra("id", id);
                     startActivity(intent);
@@ -202,10 +197,15 @@ public class DetailsDestination extends AppCompatActivity implements Destination
 
                 @Override
                 public void onFinish() {
-                    Intent intent = new Intent(getApplicationContext(), DetailsDestination.class);
-                    intent.putExtra("id", id);
-                    startActivity(intent);
-                    finish();
+                    if(!buttonClicked[0]){
+                        Intent intent = new Intent(getApplicationContext(), DetailsDestination.class);
+                        intent.putExtra("id", id);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        dialogStatus.dismiss();
+                    }
+
                 }
             }.start();
         } else  {
@@ -276,5 +276,17 @@ public class DetailsDestination extends AppCompatActivity implements Destination
         Intent intent = new Intent(this, DashboardActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
+
+        if (dialogStatus != null && dialogStatus.isShowing()) {
+            dialogStatus.dismiss();
+        }
     }
 }

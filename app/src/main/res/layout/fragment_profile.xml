@@ -14,32 +14,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/border">
 
-        <ImageView
-            android:layout_gravity="center"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:background="@drawable/profile"
-            android:backgroundTint="@color/colorPrimary"/>
 
         <LinearLayout
             android:padding="10dp"
             android:gravity="center"
             android:layout_gravity="center"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:background="@drawable/border"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:background="@drawable/profile"
+                android:backgroundTint="@color/colorPrimary"/>
             <TextView
                 android:id="@+id/name"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"/>
+                android:textSize="20dp"/>
             <TextView
                 android:id="@+id/email"
                 android:textColor="@color/black"
@@ -50,7 +53,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

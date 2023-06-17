@@ -1,5 +1,6 @@
 package com.example.travello_v2.View;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -8,12 +9,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.travello_v2.Api.UpdataPasswordTask;
+import com.example.travello_v2.Api.UpdateUserTask;
 import com.example.travello_v2.Api.UserData;
 import com.example.travello_v2.Interface.UserDataListener;
+import com.example.travello_v2.Models.User;
 import com.example.travello_v2.R;
 
 /**
@@ -33,7 +39,8 @@ public class ProfileFragment extends Fragment implements UserDataListener {
     private String mParam2;
     private LinearLayout profileLayout, loginLayout;
     TextView etName, etEmail;
-    Button btnLogout, btnLogin, btnRegister, btnChangeName, btnChangePassword;
+    private Dialog customDialog;
+    Button btnLogout, btnLogin, btnRegister, btnChangeName, btnChangePassword, btnEditName, btnEditPassword;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -112,7 +119,14 @@ public class ProfileFragment extends Fragment implements UserDataListener {
             }
         });
 
-
+        btnEditName = view.findViewById(R.id.change_name);
+        btnEditName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initCustomDialogChangeName(tokenManager.getToken());
+                customDialog.show();
+            }
+        });
 
         if (isLogin){
             UserData userData = new UserData(tokenManager.getToken(), this);
@@ -133,8 +147,70 @@ public class ProfileFragment extends Fragment implements UserDataListener {
             }
         });
 
+        btnEditPassword = view.findViewById(R.id.change_password);
+        btnEditPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initCustomDialogChangePassword(tokenManager.getToken());
+                customDialog.show();
+            }
+        });
 
         return view;
+    }
+    private void initCustomDialogChangePassword(String token) {
+        customDialog = new Dialog(requireContext());
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setContentView(R.layout.dialog_edit_password);
+        customDialog.setCancelable(true);
+
+        EditText inOldPassword, inNewPassword;
+        inOldPassword = customDialog.findViewById(R.id.txtOldPassword);
+        inNewPassword = customDialog.findViewById(R.id.txtNewPassword);
+
+        Button btnOKEditPassword;
+        btnOKEditPassword = customDialog.findViewById(R.id.btnChangePassword);
+        btnOKEditPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String oldPassword = inOldPassword.getText().toString();
+                String newPassword = inNewPassword.getText().toString();
+
+                UpdataPasswordTask task = new UpdataPasswordTask(requireContext(), token, oldPassword, newPassword);
+                task.execute();
+
+                customDialog.dismiss();
+            }
+        });
+
+    }
+
+    private void initCustomDialogChangeName(String token) {
+        customDialog = new Dialog(requireContext());
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setContentView(R.layout.dialog_edit_user);
+        customDialog.setCancelable(true);
+
+        TextView txtTitle = customDialog.findViewById(R.id.title_change_name);
+        txtTitle.setText("change name");
+        TextView textSubTitle = customDialog.findViewById(R.id.txt_SubTitle);
+        textSubTitle.setText("New name : ");
+
+        EditText txtInputEditUser;
+        Button btnOKEditUser;
+        txtInputEditUser = customDialog.findViewById(R.id.txt_input_new_name);
+        txtInputEditUser.setHint("name");
+        btnOKEditUser = customDialog.findViewById(R.id.btn_input_new_name);
+        btnOKEditUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = txtInputEditUser.getText().toString();
+                UpdateUserTask task = new UpdateUserTask(requireContext(), token, name);
+                task.execute();
+                customDialog.dismiss();
+            }
+        });
+
     }
 
     @Override

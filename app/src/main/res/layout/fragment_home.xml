@@ -89,23 +89,14 @@
             android:id="@+id/hotel_button"
             app:layout_constraintTop_toBottomOf="@+id/search"
             app:layout_constraintStart_toEndOf="@+id/beach_button"
-            app:layout_constraintEnd_toEndOf="@id/favorite_button2"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="54dp"
             android:layout_height="54dp"
             android:background="@drawable/hotel_button"
             android:layout_marginTop="30dp"
             />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/favorite_button2"
-            app:layout_constraintTop_toBottomOf="@+id/search"
-            app:layout_constraintStart_toEndOf="@+id/hotel_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:background="@drawable/love"
-            android:layout_marginTop="30dp"
-            />
+
 
         <TextView
             android:id="@+id/nameMount"
@@ -133,24 +124,14 @@
             android:id="@+id/nameHotel"
             app:layout_constraintTop_toBottomOf="@+id/mount_button"
             app:layout_constraintStart_toEndOf="@+id/nameBeach"
-            app:layout_constraintEnd_toStartOf="@id/nameFav"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="70dp"
             android:textAlignment="center"
             android:layout_height="wrap_content"
             android:text="Hotel"
             android:textColor="@color/black"
             android:layout_marginTop="5dp"/>
-        <TextView
-            android:id="@+id/nameFav"
-            app:layout_constraintTop_toBottomOf="@+id/mount_button"
-            app:layout_constraintStart_toEndOf="@+id/nameHotel"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="70dp"
-            android:textAlignment="center"
-            android:layout_height="wrap_content"
-            android:text="Favorit"
-            android:textColor="@color/black"
-            android:layout_marginTop="5dp"/>
+
 
         <TextView
             android:id="@+id/places"

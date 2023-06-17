@@ -105,4 +105,40 @@ public class ApiClient {
 
         return responseData;
     }
+
+    public static String updateUser(String token, String name) throws IOException {
+        MediaType mediaType = MediaType.parse("application/json");
+        String requestBody = String.format("{\"name\":\"%s\"}",name);
+        RequestBody body = RequestBody.create(mediaType, requestBody);
+
+        Request request = new Request.Builder()
+                .url(API_BASE_URL + "user")
+                .put(body)
+                .addHeader("Authorization", "Bearer " + token)
+                .build();
+
+        Response response = httpClient.newCall(request).execute();
+        String responseData = response.body().string();
+        response.close();
+
+        return responseData;
+    }
+
+    public static String updatePassword(String token, String oldPassword, String newPassword) throws IOException {
+        MediaType mediaType = MediaType.parse("application/json");
+        String requestBody = String.format("{\"old_password\":\"%s\",\"new_password\":\"%s\"}",oldPassword, newPassword);
+        RequestBody body = RequestBody.create(mediaType, requestBody);
+
+        Request request = new Request.Builder()
+                .url(API_BASE_URL + "userpassword")
+                .put(body)
+                .addHeader("Authorization", "Bearer " + token)
+                .build();
+
+        Response response = httpClient.newCall(request).execute();
+        String responseData = response.body().string();
+        response.close();
+
+        return responseData;
+    }
 }

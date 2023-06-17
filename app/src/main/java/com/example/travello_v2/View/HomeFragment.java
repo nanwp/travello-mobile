@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.travello_v2.Adapter.RecycleViewDestination;
 import com.example.travello_v2.Api.DestinationsData;
@@ -145,63 +146,66 @@ public class HomeFragment extends Fragment implements DestinationsDataListener {
     @Override
     public void onDestinationDataReceived(ArrayList<DestinationModels> destinationModels, int statusCode, String message) {
 
-        ArrayList<DestinationModels> popularData = new ArrayList<>(destinationModels);
-        Collections.sort(popularData, new Comparator<DestinationModels>() {
-            @Override
-            public int compare(DestinationModels o1, DestinationModels o2) {
-                int totalUlasan1 = o1.getTotalUlasan();
-                int totalUlasan2 = o2.getTotalUlasan();
+        if(statusCode != 200){
+            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        }else {
+            ArrayList<DestinationModels> popularData = new ArrayList<>(destinationModels);
+            Collections.sort(popularData, new Comparator<DestinationModels>() {
+                @Override
+                public int compare(DestinationModels o1, DestinationModels o2) {
+                    int totalUlasan1 = o1.getTotalUlasan();
+                    int totalUlasan2 = o2.getTotalUlasan();
 
-                if (totalUlasan1 < totalUlasan2) {
-                    return 1;
-                } else if (totalUlasan1 > totalUlasan2) {
-                    return -1;
-                } else {
-                    return 0;
+                    if (totalUlasan1 < totalUlasan2) {
+                        return 1;
+                    } else if (totalUlasan1 > totalUlasan2) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
                 }
-            }
-        });
+            });
 
-        ArrayList<DestinationModels> recommend = new ArrayList<>(destinationModels);
-        Collections.sort(recommend, new Comparator<DestinationModels>() {
-            @Override
-            public int compare(DestinationModels o1, DestinationModels o2) {
-                float reating1 = o1.getRating();
-                float rating2 = o2.getRating();
+            ArrayList<DestinationModels> recommend = new ArrayList<>(destinationModels);
+            Collections.sort(recommend, new Comparator<DestinationModels>() {
+                @Override
+                public int compare(DestinationModels o1, DestinationModels o2) {
+                    float reating1 = o1.getRating();
+                    float rating2 = o2.getRating();
 
-                if (reating1 < rating2) {
-                    return 1;
-                } else if (reating1 > rating2) {
-                    return -1;
-                } else {
-                    return 0;
+                    if (reating1 < rating2) {
+                        return 1;
+                    } else if (reating1 > rating2) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
                 }
+            });
+
+            ArrayList<DestinationModels> limitedpopular = new ArrayList<>();
+            int limit = 7;
+
+            for (int i = 0; i < Math.min(limit, recommend.size()); i++) {
+                limitedpopular.add(popularData.get(i));
             }
-        });
+            ArrayList<DestinationModels> limitedRecommend = new ArrayList<>();
+            for (int i = 0; i < Math.min(limit, recommend.size()); i++) {
+                limitedRecommend.add(recommend.get(i));
+            }
 
-        ArrayList<DestinationModels> limitedpopular = new ArrayList<>();
-        int limit = 7;
 
-        for (int i = 0; i < Math.min(limit, recommend.size()); i++) {
-            limitedpopular.add(popularData.get(i));
+            linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+            adapterRecyclerView = new RecycleViewDestination(getContext(), limitedpopular);
+
+            linearLayoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+            adapterRecyclerView2 = new RecycleViewDestination(getContext(), limitedRecommend);
+
+            recyclerView2.setLayoutManager(linearLayoutManager2);
+            recyclerView2.setAdapter(adapterRecyclerView2);
+
+            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.setAdapter(adapterRecyclerView);
         }
-        ArrayList<DestinationModels> limitedRecommend = new ArrayList<>();
-        for (int i = 0; i < Math.min(limit, recommend.size()); i++) {
-            limitedRecommend.add(recommend.get(i));
-        }
-
-
-        linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        adapterRecyclerView = new RecycleViewDestination(getContext(), limitedpopular);
-
-        linearLayoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        adapterRecyclerView2 = new RecycleViewDestination(getContext(), limitedRecommend);
-
-        recyclerView2.setLayoutManager(linearLayoutManager2);
-        recyclerView2.setAdapter(adapterRecyclerView2);
-
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapterRecyclerView);
-
     }
 }
