@@ -13,6 +13,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
 
         <item name="colorSurface">@color/menu_collor</item>
+        <item name="android:textColorHint">#D3D3D3</item>
 
 
         <!-- Customize your theme here. -->

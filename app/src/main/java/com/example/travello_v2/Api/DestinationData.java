@@ -48,6 +48,7 @@ public class DestinationData extends AsyncTask<Void, Void, DestinationModel> {
                 }
 
 
+
                 JSONArray ulasanResp = dataObj.getJSONArray("ulasan");
                 ArrayList<UlasanModels> ulasanArray = new ArrayList<>();
 

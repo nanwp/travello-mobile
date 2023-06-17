@@ -10,5 +10,7 @@
     <color name="colorPrimary">#2A8371</color>
     <color name="menu_collor">#71B4AA</color>
     <color name="secondaryCollor">#f5f5f5</color>
+    <color name="fail">#ec2024</color>
+    <color name="success">#3ab54a</color>
 
 </resources>

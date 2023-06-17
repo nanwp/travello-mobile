@@ -9,6 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="20dp"
         android:elevation="3dp"
         app:cardUseCompatPadding="true">
@@ -49,6 +50,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="14dp"/>
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/total_ulasan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

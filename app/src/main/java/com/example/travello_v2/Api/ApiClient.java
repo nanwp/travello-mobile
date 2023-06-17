@@ -40,4 +40,69 @@ public class ApiClient {
 
         return responseData;
     }
+
+    public static String login(String email, String password) throws IOException {
+        MediaType mediaType = MediaType.parse("application/json");
+        String requestBody = String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password);
+        RequestBody body = RequestBody.create(mediaType, requestBody);
+
+        Request request = new Request.Builder()
+                .url(API_BASE_URL + "login")
+                .post(body)
+                .build();
+
+        Response response = httpClient.newCall(request).execute();
+        String responseData = response.body().string();
+        response.close();
+
+        return responseData;
+    }
+
+    public  static String registration(String firstName, String lastname, String email, String password) throws IOException {
+        MediaType mediaType = MediaType.parse("application/json");
+        String requestBody = String.format("{\"first_name\":\"%s\",\"last_name\":\"%s\",\"email\":\"%s\",\"password\":\"%s\"}",firstName, lastname,email, password);
+        RequestBody body = RequestBody.create(mediaType, requestBody);
+
+        Request request = new Request.Builder()
+                .url(API_BASE_URL + "register")
+                .post(body)
+                .build();
+
+        Response response = httpClient.newCall(request).execute();
+        String responseData = response.body().string();
+        response.close();
+
+        return responseData;
+    }
+
+    public static String getUser(String token) throws IOException {
+        Request request = new Request.Builder()
+                .url(API_BASE_URL + "user")
+                .get()
+                .addHeader("Authorization", "Bearer " + token)
+                .build();
+
+        Response response = httpClient.newCall(request).execute();
+        String responseData = response.body().string();
+        response.close();
+        return responseData;
+    }
+    public static String addUlasan(String token, String destinationId, String message, float rating) throws IOException {
+        MediaType mediaType = MediaType.parse("application/json");
+        String requestBody = String.format("{\"destination_id\":\"%s\",\"message\":\"%s\",\"rating\":%.2f}",destinationId, message, rating);
+        RequestBody body = RequestBody.create(mediaType, requestBody);
+
+        Request request = new Request.Builder()
+                .url(API_BASE_URL + "ulasan")
+                .post(body)
+                .addHeader("Authorization", "Bearer " + token)
+                .build();
+
+        Response response = httpClient.newCall(request).execute();
+        String responseData = response.body().string();
+        response.close();
+        System.out.println("Pada API CLIENT "+requestBody+"\ntoken : "+token);
+
+        return responseData;
+    }
 }

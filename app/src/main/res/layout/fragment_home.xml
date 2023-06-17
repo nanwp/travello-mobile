@@ -42,6 +42,7 @@
             android:id="@+id/search"
             app:layout_constraintTop_toBottomOf="@+id/startSapa"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/search_button"
             android:paddingLeft="26dp"
             android:layout_width="268dp"
             android:layout_height="42dp"
@@ -52,18 +53,17 @@
             android:textSize="15sp"
             android:elevation="4dp"
             android:translationZ="6dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="35dp"/>
+            android:layout_marginTop="25dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@id/search_button"
             app:layout_constraintTop_toBottomOf="@+id/startSapa"
             app:layout_constraintStart_toEndOf="@id/search"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="42dp"
             android:layout_height="42dp"
             android:background="@drawable/search"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginTop="25dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/mount_button"
@@ -112,7 +112,7 @@
             app:layout_constraintTop_toBottomOf="@+id/mount_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/nameBeach"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:textAlignment="center"
             android:layout_height="wrap_content"
             android:text="Mountain"
@@ -124,7 +124,7 @@
             app:layout_constraintStart_toEndOf="@+id/nameMount"
             app:layout_constraintEnd_toStartOf="@+id/nameHotel"
             android:layout_height="wrap_content"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:textAlignment="center"
             android:text="Beach"
             android:textColor="@color/black"
@@ -134,7 +134,7 @@
             app:layout_constraintTop_toBottomOf="@+id/mount_button"
             app:layout_constraintStart_toEndOf="@+id/nameBeach"
             app:layout_constraintEnd_toStartOf="@id/nameFav"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:textAlignment="center"
             android:layout_height="wrap_content"
             android:text="Hotel"
@@ -145,7 +145,7 @@
             app:layout_constraintTop_toBottomOf="@+id/mount_button"
             app:layout_constraintStart_toEndOf="@+id/nameHotel"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:textAlignment="center"
             android:layout_height="wrap_content"
             android:text="Favorit"

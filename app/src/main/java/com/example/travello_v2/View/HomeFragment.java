@@ -20,6 +20,8 @@ import com.example.travello_v2.Models.DestinationModels;
 import com.example.travello_v2.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -143,12 +145,57 @@ public class HomeFragment extends Fragment implements DestinationsDataListener {
     @Override
     public void onDestinationDataReceived(ArrayList<DestinationModels> destinationModels, int statusCode, String message) {
 
+        ArrayList<DestinationModels> popularData = new ArrayList<>(destinationModels);
+        Collections.sort(popularData, new Comparator<DestinationModels>() {
+            @Override
+            public int compare(DestinationModels o1, DestinationModels o2) {
+                int totalUlasan1 = o1.getTotalUlasan();
+                int totalUlasan2 = o2.getTotalUlasan();
+
+                if (totalUlasan1 < totalUlasan2) {
+                    return 1;
+                } else if (totalUlasan1 > totalUlasan2) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+
+        ArrayList<DestinationModels> recommend = new ArrayList<>(destinationModels);
+        Collections.sort(recommend, new Comparator<DestinationModels>() {
+            @Override
+            public int compare(DestinationModels o1, DestinationModels o2) {
+                float reating1 = o1.getRating();
+                float rating2 = o2.getRating();
+
+                if (reating1 < rating2) {
+                    return 1;
+                } else if (reating1 > rating2) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+
+        ArrayList<DestinationModels> limitedpopular = new ArrayList<>();
+        int limit = 7;
+
+        for (int i = 0; i < Math.min(limit, recommend.size()); i++) {
+            limitedpopular.add(popularData.get(i));
+        }
+        ArrayList<DestinationModels> limitedRecommend = new ArrayList<>();
+        for (int i = 0; i < Math.min(limit, recommend.size()); i++) {
+            limitedRecommend.add(recommend.get(i));
+        }
+
 
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        adapterRecyclerView = new RecycleViewDestination(getContext(), destinationModels);
+        adapterRecyclerView = new RecycleViewDestination(getContext(), limitedpopular);
 
         linearLayoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        adapterRecyclerView2 = new RecycleViewDestination(getContext(), destinationModels);
+        adapterRecyclerView2 = new RecycleViewDestination(getContext(), limitedRecommend);
 
         recyclerView2.setLayoutManager(linearLayoutManager2);
         recyclerView2.setAdapter(adapterRecyclerView2);

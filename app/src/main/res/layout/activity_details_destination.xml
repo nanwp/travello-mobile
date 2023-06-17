@@ -40,25 +40,50 @@
                 app:piv_padding="12dp"
                 app:piv_radius="8dp"/>
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Judul"
-                android:textStyle="bold"
-                android:textSize="22sp"
-                android:textColor="@color/black"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"/>
-            <TextView
-                android:id="@+id/lokasi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lokasi"
-                android:textSize="18sp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/black"/>
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Judul"
+                        android:textStyle="bold"
+                        android:textSize="22sp"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="20dp"/>
+                    <TextView
+                        android:id="@+id/lokasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lokasi"
+                        android:textSize="18sp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/like"
+                    android:layout_gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -144,24 +169,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="5dp"
         android:background="@color/white">
-        <Button
-            android:id="@+id/lihatUlasan"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/berikanUlasan"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="Lihat Ulasan"/>
+
 
         <Button
             android:id="@+id/berikanUlasan"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/lihatUlasan"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
             android:text="Berikan Ulasan"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
